@@ -1,5 +1,6 @@
 var Price = React.createClass({
     loadPrice: function () {
+        this.disablePrice();
         this.handleClick();
         this.enableButton();
         if (document.getElementById("button").getAttribute("value") == "true") {
@@ -134,9 +135,43 @@ var Price = React.createClass({
         });
     },
 
+    disablePrice : function() {
+        if(document.getElementById("pr").style.display == "block") {
+            var body = document.getElementById("selectBody");
+            body.addEventListener("change", function () {
+                document.getElementById("pr").style.display = "none";
+
+            });
+            var years = document.getElementById("selectYears");
+            years.addEventListener("change", function () {
+                document.getElementById("pr").style.display = "none";
+
+            });
+            var manufacturer = document.getElementById("selectManufacturer");
+            manufacturer.addEventListener("change", function () {
+                document.getElementById("pr").style.display = "none";
+
+            });
+            var series = document.getElementById("selectSeries");
+            series.addEventListener("change", function () {
+                document.getElementById("pr").style.display = "none";
+
+            });
+            var model = document.getElementById("selectModel");
+            model.addEventListener("change", function () {
+                document.getElementById("pr").style.display = "none";
+            });
+            var odometer = document.getElementById("selectOdometer");
+            odometer.addEventListener("change", function () {
+                document.getElementById("pr").style.display = "none";
+            });
+        }
+    },
+
     enableButton: function () {
         var button = document.getElementById("button");
-        if ($("#selectOdometer").val() != "Выберите пробег") {
+        if ($("#selectOdometer").val() != "Выберите пробег" &&
+            $("#selectBody").val() != "Выберите модификацию") {
             button.removeAttribute("disabled");
         }
         else {
@@ -148,7 +183,7 @@ var Price = React.createClass({
             <div><Component data={this.state.price}/></div>
         )
     },
-})
+});
 
 var Component = React.createClass({
     render: function () {
